@@ -131,6 +131,8 @@ public class FinancialTracker {
 //validate the numbers
         if (Amount > 0){
             try {BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME));
+                LocalDate dateTime = userInputDateTime.toLocalDate();
+
 
             } catch (IOException e){
                 System.out.println("Sorry we have an error");
