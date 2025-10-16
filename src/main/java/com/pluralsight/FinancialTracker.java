@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import java.io.*;
+import java.nio.Buffer;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -128,6 +129,17 @@ public class FinancialTracker {
         double Amount = scanner.nextDouble();
 
 //validate the numbers
+        if (Amount > 0){
+            try {BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME));
+
+            } catch (IOException e){
+                System.out.println("Sorry we have an error");
+                System.out.println(e.getMessage());
+
+            }
+
+        }else {
+            System.out.println("Invalid input. Please enter a positive number.");
         }
 
     }
