@@ -2,6 +2,7 @@ package com.pluralsight;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -117,22 +118,16 @@ public class FinancialTracker {
      */
     private static void addDeposit(Scanner scanner) {
         // TODO
-        System.out.println("Enter date plus time in the format yyyy-MM-dd HH:mm:ss, plus description, vendor, amount.");
-        String input = scanner.nextLine();
-        String[] inputParts = input.split(" ", 5 );
-        double amount = Double.valueOf(inputParts[4]);
-        if (amount >= 0.0 ){
-            try(PrintWriter w = new PrintWriter(new FileWriter(FILE_NAME))){
-              String line = String.join(DELIMETER, inputParts);
-                w.println(line);
+        System.out.println("Enter date plus time in the format yyyy-MM-dd HH:mm:ss");
+        LocalDateTime userInputDateTime  = LocalDateTime.parse(scanner.nextLine());
+        System.out.println("Enter description");
+        String descriptionInput = scanner.nextLine();
+        System.out.println("Enter vendor");
+        String vendorName = scanner.nextLine();
+        System.out.println("Enter Amount");
+        double Amount = scanner.nextDouble();
 
-
-            } catch (IOException e) {
-            }
-
-        } else {
-
-            System.out.println("Deposit can not be negative");
+//validate the numbers
         }
 
     }
