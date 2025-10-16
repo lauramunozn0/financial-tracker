@@ -1,6 +1,6 @@
 package com.pluralsight;
 
-import java.io.File;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -22,6 +22,8 @@ public class FinancialTracker {
        ------------------------------------------------------------------ */
     private static final ArrayList<Transaction> transactions = new ArrayList<>();
     private static final String FILE_NAME = "transactions.csv";
+    private static final String DELIMETER = "|";
+
 
     private static final String DATE_PATTERN = "yyyy-MM-dd";
     private static final String TIME_PATTERN = "HH:mm:ss";
@@ -71,9 +73,36 @@ public class FinancialTracker {
      * • Each line looks like: date|time|description|vendor|amount
      */
     public static void loadTransactions(String fileName) {
-        // TODO: create file if it does not exist, then read each line,
-        //       parse the five fields, build a Transaction object,
-        //       and add it to the transactions list.
+        File transactionsFile = new File(FILE_NAME);
+        try {
+            if (transactionsFile.createNewFile()){
+                System.out.println("file successfully created");
+
+            } else{
+                String line = null;
+                BufferedReader b = new BufferedReader(new FileReader(FILE_NAME));
+                while ((line = b.readLine())!= null){
+                    String[] lineValues = line.split(DELIMETER);
+                    LocalDate date = LocalDate.parse(lineValues [0]);
+                   LocalTime time = LocalTime.parse(lineValues[1]);
+                    String description = lineValues[2];
+                    String vendor = lineValues[3];
+                    double amount = Double.valueOf(lineValues[4]);
+                    transactions.add(new Transaction(date,time,description,vendor,amount));
+
+
+                }
+
+            }
+        } catch (IOException e){
+            System.out.println("Sorry we have an Error");
+            System.out.println(e.getMessage());
+
+
+
+
+        }
+
     }
 
     /* ------------------------------------------------------------------
@@ -88,6 +117,24 @@ public class FinancialTracker {
      */
     private static void addDeposit(Scanner scanner) {
         // TODO
+        System.out.println("Enter date plus time in the format yyyy-MM-dd HH:mm:ss, plus description, vendor, amount.");
+        String input = scanner.nextLine();
+        String[] inputParts = input.split(" ", 5 );
+        double amount = Double.valueOf(inputParts[4]);
+        if (amount >= 0.0 ){
+            try(PrintWriter w = new PrintWriter(new FileWriter(FILE_NAME))){
+              String line = String.join(DELIMETER, inputParts);
+                w.println(line);
+
+
+            } catch (IOException e) {
+            }
+
+        } else {
+
+            System.out.println("Deposit can not be negative");
+        }
+
     }
 
     /**
