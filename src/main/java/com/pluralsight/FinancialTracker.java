@@ -134,6 +134,8 @@ public class FinancialTracker {
                 LocalDate UserDate = userInputDateTime.toLocalDate();
                 LocalTime UserTime = userInputDateTime.toLocalTime();
                 writer.write(UserDate + "|" + UserTime + "|" + descriptionInput + "|" + vendorName + "|" + Amount + "\n" );
+                transactions.add(new Transaction(UserDate, UserTime, descriptionInput, vendorName, Amount));
+                writer.close();
 
 
 
