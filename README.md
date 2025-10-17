@@ -19,7 +19,5 @@ List resources such as tutorials, articles, or documentation that helped you dur
 
 Thanks to my Study Group and Andy.
 
-- Thank you to [Mentor's Name] for continuous support and guidance.
-- A special thanks to all teammates for their dedication and teamwork.
 
 
