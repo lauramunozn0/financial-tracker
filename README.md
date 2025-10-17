@@ -1,8 +1,9 @@
-# Project Title
 
+Financial Tracker
 ## Description of the Project
 
-Briefly describe what this Java console application does. Mention its purpose and who the intended users are. Explain the main functionality and what problems it aims to solve.
+This Java console application is a personal finance tracking tool designed to help users record, organize, and review their financial transactions directly from the command line. Its main purpose is to provide a simple, text-based system for managing money without the need for complex software or spreadsheets.
+
 
 ## User Stories
 
@@ -66,3 +67,4 @@ Express gratitude towards those who provided help, guidance, or resources:
 
 - Thank you to [Mentor's Name] for continuous support and guidance.
 - A special thanks to all teammates for their dedication and teamwork.
+
