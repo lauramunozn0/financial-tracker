@@ -213,11 +213,36 @@ public class FinancialTracker {
     /* ------------------------------------------------------------------
        Display helpers: show data in neat columns
        ------------------------------------------------------------------ */
-    private static void displayLedger() { /* TODO – print all transactions in column format */ }
+    private static void displayLedger() {
+        System.out.println("==========================================LEDGER============================================");
+        for(Transaction t : transactions ){
+            System.out.println("========================================================================================");
+            System.out.println(t);
+        }
+      }
 
-    private static void displayDeposits() { /* TODO – only amount > 0               */ }
+    private static void displayDeposits() {
+        System.out.println("===============================================DEPOSITS=============================================");
+        for (Transaction t : transactions ){
+            if (t.getAmount() > 0) {
+                System.out.println("==============================================================================================");
+                System.out.println(t);
+            }
+        }
+    }
 
-    private static void displayPayments() { /* TODO – only amount < 0               */ }
+    private static void displayPayments() {
+        System.out.println("==========================================PAYMENTS=================================================");
+        boolean found = false;
+        for (Transaction t : transactions) {
+            if (t.getAmount() < 0 ){
+                System.out.println("==============================================================================================");
+                System.out.println(t);
+
+            }
+
+        }
+    }
 
     /* ------------------------------------------------------------------
        Reports menu
