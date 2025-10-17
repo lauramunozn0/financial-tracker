@@ -24,7 +24,7 @@ public class FinancialTracker {
        ------------------------------------------------------------------ */
     private static final ArrayList<Transaction> transactions = new ArrayList<>();
     private static final String FILE_NAME = "transactions.csv";
-    private static final String DELIMETER = "|";
+    private static final String DELIMETER = "\\|";
 
 
     private static final String DATE_PATTERN = "yyyy-MM-dd";
@@ -138,8 +138,6 @@ public class FinancialTracker {
                 writer.close();
 
 
-
-
             } catch (IOException e){
                 System.out.println("Sorry we have an error");
                 System.out.println(e.getMessage());
@@ -157,7 +155,32 @@ public class FinancialTracker {
      * then converted to a negative amount before storing.
      */
     private static void addPayment(Scanner scanner) {
-        // TODO
+        System.out.println("Enter date plus time in the format yyyy-MM-dd HH:mm:ss");
+        LocalDateTime userInputDateTime  = LocalDateTime.parse(scanner.nextLine(),DATETIME_FMT);
+        System.out.println("Enter description");
+        String descriptionInput = scanner.nextLine();
+        System.out.println("Enter vendor");
+        String vendorName = scanner.nextLine();
+        System.out.println("Enter Amount");
+        double Amount = scanner.nextDouble();
+
+        if (Amount > 0){
+            try {BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true));
+                LocalDate UserDate = userInputDateTime.toLocalDate();
+                LocalTime UserTime = userInputDateTime.toLocalTime();
+                writer.write(UserDate + "|" + UserTime + "|" + descriptionInput + "|" + vendorName + "|" + -Amount + "\n" );
+                transactions.add(new Transaction(UserDate, UserTime, descriptionInput, vendorName, -Amount));
+                writer.close();
+
+
+            } catch (IOException e){
+                System.out.println("Sorry we have an error");
+                System.out.println(e.getMessage());
+            }
+
+        }else {
+            System.out.println("Invalid input. Please enter a positive number.");
+        }
     }
 
     /* ------------------------------------------------------------------
